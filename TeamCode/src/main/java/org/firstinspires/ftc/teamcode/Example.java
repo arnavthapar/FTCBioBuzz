@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -12,6 +13,7 @@ import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
 
 import java.util.List;
 
+@Disabled
 @TeleOp(name="Robot OpMode", group="Linear OpMode")
 public class Example extends LinearOpMode {
 
@@ -36,7 +38,6 @@ public class Example extends LinearOpMode {
     }
 
     public void displayVisionPortalData() {
-        // Real Java expects the exact list type
         myAprilTagDetections = myAprilTagProcessor.getDetections();
 
         for (AprilTagDetection detection : myAprilTagDetections) {
@@ -44,7 +45,8 @@ public class Example extends LinearOpMode {
                 yaw = detection.ftcPose.yaw;
                 range = detection.ftcPose.range;
 
-                telemetry.addData("ID", detection.id);
+                //
+                //telemetry.addData("ID", detection.id);
                 telemetry.addData("Range", range);
                 telemetry.addData("Yaw", yaw);
             }
@@ -56,11 +58,11 @@ public class Example extends LinearOpMode {
     public void runOpMode() {
         driveLeft = hardwareMap.get(DcMotor.class, "driveLeft");
         driveRight = hardwareMap.get(DcMotor.class, "driveRight");
-        shootwheel = hardwareMap.get(DcMotor.class, "shootwheel");
-        artifactstopper = hardwareMap.get(Servo.class, "artifactstopper");
+        //shootwheel = hardwareMap.get(DcMotor.class, "shootwheel");
+        //artifactstopper = hardwareMap.get(Servo.class, "artifactstopper");
 
-        artifactstopper.setPosition(0.2);
-        initializeVisionPortal();
+        //artifactstopper.setPosition(0.2);
+        //initializeVisionPortal();
 
         waitForStart();
 
