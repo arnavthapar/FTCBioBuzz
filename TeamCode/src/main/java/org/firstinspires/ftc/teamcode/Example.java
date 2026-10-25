@@ -58,11 +58,11 @@ public class Example extends LinearOpMode {
     public void runOpMode() {
         driveLeft = hardwareMap.get(DcMotor.class, "driveLeft");
         driveRight = hardwareMap.get(DcMotor.class, "driveRight");
-        //shootwheel = hardwareMap.get(DcMotor.class, "shootwheel");
-        //artifactstopper = hardwareMap.get(Servo.class, "artifactstopper");
+        shootwheel = hardwareMap.get(DcMotor.class, "shootwheel");
+        artifactstopper = hardwareMap.get(Servo.class, "artifactstopper");
 
-        //artifactstopper.setPosition(0.2);
-        //initializeVisionPortal();
+        artifactstopper.setPosition(0.2);
+        initializeVisionPortal();
 
         waitForStart();
 

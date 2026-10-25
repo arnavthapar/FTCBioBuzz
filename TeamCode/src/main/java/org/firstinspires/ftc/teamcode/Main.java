@@ -6,8 +6,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 //import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-@TeleOp(name="Four Motors", group="Linear OpMode")
-public class FourMotors extends LinearOpMode {
+@TeleOp(name="Main", group="Linear OpMode")
+public class Main extends LinearOpMode {
     DcMotor motorLeft;
     DcMotor motorRight;
     DcMotor frontLeft;
@@ -20,13 +20,25 @@ public class FourMotors extends LinearOpMode {
 
     @Override
     public void runOpMode() {
+
         motorLeft = hardwareMap.get(DcMotor.class, "driveLeft");
         motorRight = hardwareMap.get(DcMotor.class, "driveRight");
         frontLeft = hardwareMap.get(DcMotor.class, "frontLeft");
         frontRight = hardwareMap.get(DcMotor.class, "frontRight");
+        intake = hardwareMap.get(DcMotor.class, "intake");
+
         motorLeft.setDirection(DcMotor.Direction.REVERSE);
-        intake = hardwareMap.get(DcMotor.class, "inttake");
         waitForStart();
+
+        /*
+         * Control Hub
+         * 0: intake
+         * 1: driveRight
+         * 2: frontRight
+         * Expansion Hub
+         * 0: driveLeft
+         * 1: frontLeft
+         */
 
         while (opModeIsActive()) {
             horizontalInput = gamepad1.left_stick_y;
@@ -39,8 +51,8 @@ public class FourMotors extends LinearOpMode {
             } else {
                 intake.setPower(0);
             }
-            frontLeft.setPower((maxDrivePower * verticalInput + maxDrivePower * horizontalInput));
 
+            frontLeft.setPower((maxDrivePower * verticalInput + maxDrivePower * horizontalInput));
             motorLeft.setPower((maxDrivePower * verticalInput + maxDrivePower * horizontalInput));
             frontRight.setPower((maxDrivePower * verticalInput - maxDrivePower * horizontalInput));
             motorRight.setPower((maxDrivePower * verticalInput - maxDrivePower * horizontalInput));
